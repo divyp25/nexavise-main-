@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import { useData } from "../contexts/DataContext";
 import { Helmet } from "react-helmet-async";
 import { ScrollReveal } from "../components/ScrollReveal";
-import { Shield, Users, Award, GraduationCap, Target, Flag, Globe } from "lucide-react";
+import { Shield, Users, GraduationCap, Target, Flag } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 
 /* ── Stagger variants for back-face details ── */
@@ -468,34 +468,6 @@ export const AboutUs = () => {
             </div>
 
           </div>
-
-          {/* Bottom Stats */}
-          <ScrollReveal>
-            <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-[#0a0e14]/80 border border-gray-200 dark:border-cyan-500/10 shadow-2xl">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div className="text-center flex flex-col items-center">
-                  <Shield className="w-8 h-8 text-cyan-500 mb-4" />
-                  <span className="text-4xl font-black text-gray-900 dark:text-white mb-2">17+</span>
-                  <span className="text-xs text-gray-500 uppercase tracking-wider font-bold">Years of Excellence</span>
-                </div>
-                <div className="text-center flex flex-col items-center">
-                  <Users className="w-8 h-8 text-cyan-500 mb-4" />
-                  <span className="text-4xl font-black text-gray-900 dark:text-white mb-2">504+</span>
-                  <span className="text-xs text-gray-500 uppercase tracking-wider font-bold">Happy Clients</span>
-                </div>
-                <div className="text-center flex flex-col items-center">
-                  <Award className="w-8 h-8 text-cyan-500 mb-4" />
-                  <span className="text-4xl font-black text-gray-900 dark:text-white mb-2">26+</span>
-                  <span className="text-xs text-gray-500 uppercase tracking-wider font-bold">Industry Awards</span>
-                </div>
-                <div className="text-center flex flex-col items-center">
-                  <Globe className="w-8 h-8 text-cyan-500 mb-4" />
-                  <span className="text-4xl font-black text-gray-900 dark:text-white mb-2">24/7</span>
-                  <span className="text-xs text-gray-500 uppercase tracking-wider font-bold">Cyber Defense</span>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
