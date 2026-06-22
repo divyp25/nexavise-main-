@@ -16,7 +16,6 @@ import { Login } from "./pages/Login";
 import { AboutUs } from "./pages/AboutUs";
 import { LegalPolicy } from "./pages/LegalPolicy";
 import { Helmet } from 'react-helmet-async';
-import { CustomCursor } from "./components/CustomCursor";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LocationProvider } from "./contexts/LocationContext";
 import { LocationModal } from "./components/LocationModal";
@@ -37,7 +36,6 @@ function App() {
                 <meta name="description" content="Comprehensive GRC advisory, VAPT testing, and managed SOC." />
               </Helmet>
               
-              <CustomCursor />
               <AccessibilityBar />
               <Navbar />
               
