@@ -93,8 +93,8 @@ export const AdminDashboard = () => {
     } catch (e) {}
   };
 
-  const handleUpdateCompany = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleUpdateCompany = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     try {
       const res = await fetch('http://localhost:3001/api/about/company', {
         method: 'PUT',
@@ -756,7 +756,7 @@ export const AdminDashboard = () => {
       {/* Add Review Form */}
       <div className="bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/10 rounded-2xl p-6 shadow-xl">
         <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-6">
-          <Plus className="w-5 h-5 text-amber-500" /> Add New Review
+          <Plus className="w-5 h-5 text-cyan-500" /> Add New Review
         </h3>
         <form onSubmit={handleAddReview} className="space-y-4">
           <textarea
@@ -764,7 +764,7 @@ export const AdminDashboard = () => {
             placeholder="Review text..."
             value={newReview.text}
             onChange={e => setNewReview({...newReview, text: e.target.value})}
-            className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 min-h-[100px] dark:text-white"
+            className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 min-h-[100px] dark:text-white"
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <input
@@ -773,7 +773,7 @@ export const AdminDashboard = () => {
               placeholder="Author name"
               value={newReview.author}
               onChange={e => setNewReview({...newReview, author: e.target.value})}
-              className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 dark:text-white"
+              className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 dark:text-white"
             />
             <input
               required
@@ -781,7 +781,7 @@ export const AdminDashboard = () => {
               placeholder="Role (e.g. CTO, FinTech)"
               value={newReview.role}
               onChange={e => setNewReview({...newReview, role: e.target.value})}
-              className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 dark:text-white"
+              className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 dark:text-white"
             />
             <div className="flex items-center gap-2">
               <label className="text-xs text-gray-500 font-bold uppercase tracking-wider shrink-0">Rating</label>
@@ -793,13 +793,13 @@ export const AdminDashboard = () => {
                     onClick={() => setNewReview({...newReview, rating: star})}
                     className="p-1 transition-colors"
                   >
-                    <Star className={`w-5 h-5 ${star <= newReview.rating ? 'fill-amber-400 text-amber-400' : 'text-gray-300 dark:text-gray-600'}`} />
+                    <Star className={`w-5 h-5 ${star <= newReview.rating ? 'fill-cyan-400 text-cyan-400' : 'text-gray-300 dark:text-gray-600'}`} />
                   </button>
                 ))}
               </div>
             </div>
           </div>
-          <button type="submit" className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl flex items-center gap-2 transition-colors">
+          <button type="submit" className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-xl flex items-center gap-2 transition-colors">
             <Plus className="w-4 h-4" /> Add Review
           </button>
         </form>
@@ -829,7 +829,7 @@ export const AdminDashboard = () => {
               <div className="p-6 border-b border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 flex flex-col gap-4">
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                    <Star className="w-5 h-5 text-amber-500" /> Review Management ({filteredReviews.length})
+                    <Star className="w-5 h-5 text-cyan-500" /> Review Management ({filteredReviews.length})
                   </h3>
                   <button onClick={fetchReviews} className="p-2 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
                     <RefreshCw className="w-4 h-4 text-gray-600 dark:text-gray-400" />
@@ -841,19 +841,19 @@ export const AdminDashboard = () => {
                     placeholder="Filter by Name"
                     value={reviewFilterName}
                     onChange={e => { setReviewFilterName(e.target.value); setReviewPage(1); }}
-                    className="bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-amber-500 flex-1"
+                    className="bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-cyan-500 flex-1"
                   />
                   <input
                     type="text"
                     placeholder="Filter by Role"
                     value={reviewFilterRole}
                     onChange={e => { setReviewFilterRole(e.target.value); setReviewPage(1); }}
-                    className="bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-amber-500 flex-1"
+                    className="bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-cyan-500 flex-1"
                   />
                   <select
                     value={reviewFilterStar}
                     onChange={e => { setReviewFilterStar(e.target.value === '' ? '' : Number(e.target.value)); setReviewPage(1); }}
-                    className="bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-amber-500"
+                    className="bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-cyan-500"
                   >
                     <option value="">All Stars</option>
                     <option value="5">5 Stars</option>
@@ -865,7 +865,7 @@ export const AdminDashboard = () => {
                   <select
                     value={reviewFilterStatus}
                     onChange={e => { setReviewFilterStatus(e.target.value); setReviewPage(1); }}
-                    className="bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-amber-500"
+                    className="bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-cyan-500"
                   >
                     <option value="all">All Statuses</option>
                     <option value="pending">Pending</option>
@@ -885,20 +885,20 @@ export const AdminDashboard = () => {
                     <textarea
                       value={editingReview.text}
                       onChange={e => setEditingReview({...editingReview, text: e.target.value})}
-                      className="w-full bg-black/5 dark:bg-white/5 border border-amber-500/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 min-h-[80px] dark:text-white"
+                      className="w-full bg-black/5 dark:bg-white/5 border border-cyan-500/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 min-h-[80px] dark:text-white"
                     />
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <input
                         type="text"
                         value={editingReview.author}
                         onChange={e => setEditingReview({...editingReview, author: e.target.value})}
-                        className="bg-black/5 dark:bg-white/5 border border-amber-500/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 dark:text-white"
+                        className="bg-black/5 dark:bg-white/5 border border-cyan-500/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 dark:text-white"
                       />
                       <input
                         type="text"
                         value={editingReview.role}
                         onChange={e => setEditingReview({...editingReview, role: e.target.value})}
-                        className="bg-black/5 dark:bg-white/5 border border-amber-500/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 dark:text-white"
+                        className="bg-black/5 dark:bg-white/5 border border-cyan-500/50 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 dark:text-white"
                       />
                       <div className="flex items-center gap-2">
                         <label className="text-xs text-gray-500 font-bold uppercase tracking-wider shrink-0">Rating</label>
@@ -910,7 +910,7 @@ export const AdminDashboard = () => {
                               onClick={() => setEditingReview({...editingReview, rating: star})}
                               className="p-1 transition-colors"
                             >
-                              <Star className={`w-5 h-5 ${star <= editingReview.rating ? 'fill-amber-400 text-amber-400' : 'text-gray-300 dark:text-gray-600'}`} />
+                              <Star className={`w-5 h-5 ${star <= editingReview.rating ? 'fill-cyan-400 text-cyan-400' : 'text-gray-300 dark:text-gray-600'}`} />
                             </button>
                           ))}
                         </div>
@@ -992,7 +992,7 @@ export const AdminDashboard = () => {
                       <div className="flex items-center gap-3">
                         {/* Pending Label before Approve when status is pending */}
                         {(!review.status || review.status === "pending") && (
-                          <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border bg-yellow-500/10 text-yellow-500 border-yellow-500/20 mr-1 animate-pulse">
+                          <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border bg-cyan-500/10 text-cyan-500 border-cyan-500/20 mr-1 animate-pulse">
                             Pending
                           </span>
                         )}

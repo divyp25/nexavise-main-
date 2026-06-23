@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { ScrollReveal } from "../components/ScrollReveal";
 import DecryptedText from "../components/DecryptedText";
 import { useData } from "../contexts/DataContext";

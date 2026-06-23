@@ -22,6 +22,7 @@ import { LocationModal } from "./components/LocationModal";
 import { CookieBanner } from "./components/CookieBanner";
 import { AuthProvider } from "./contexts/AuthContext";
 import { DataProvider } from "./contexts/DataContext";
+import { CustomCursor } from "./components/CustomCursor";
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
 
               <CookieBanner />
               <Footer />
+              <CustomCursor />
             </div>
           </DataProvider>
         </AuthProvider>

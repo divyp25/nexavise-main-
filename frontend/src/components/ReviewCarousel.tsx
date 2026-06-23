@@ -256,8 +256,9 @@ const ReviewModal = ({
 
         {/* Close */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-all"
+          className="absolute top-5 right-5 z-30 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-all"
         >
           <X className="w-4 h-4" />
         </button>
