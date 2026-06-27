@@ -434,7 +434,7 @@ export const ReviewCarousel = () => {
           <div className="flex overflow-hidden relative w-full">
             <motion.div
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 55 }}
               className="flex gap-12 px-4 w-max"
               style={{ willChange: "transform" }}
             >
