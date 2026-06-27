@@ -43,11 +43,10 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 
   const refreshData = async () => {
     try {
-      const [categoriesRes, servicesRes, sectorsRes, sectorServicesRes, aboutRes] = await Promise.all([
+      const [categoriesRes, servicesRes, sectorsRes, aboutRes] = await Promise.all([
         fetch('/api/service_categories').catch(() => null),
         fetch('/api/services').catch(() => null),
         fetch('/api/sectors').catch(() => null),
-        fetch('/api/sector_services').catch(() => null),
         fetch('/api/about').catch(() => null)
       ]);
 
@@ -75,16 +74,15 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
         }
       }
 
-      if (sectorsRes && sectorsRes.ok && sectorServicesRes && sectorServicesRes.ok) {
+      if (sectorsRes && sectorsRes.ok) {
         let sectors = await sectorsRes.json();
-        let sectorServices = await sectorServicesRes.json();
         
         if (sectors.length > 0) {
           sectors = sectors.map((s: any) => ({
             ...s,
             icon: (Icons as any)[s.icon] || Icons.Shield,
             desc: s.description,
-            services: sectorServices.filter((ss: any) => ss.sector_id === s.id)
+            services: s.services || []
           }));
           setSectorsData(sectors);
         }
