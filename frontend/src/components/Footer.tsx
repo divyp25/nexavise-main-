@@ -43,7 +43,9 @@ export const Footer = () => {
 
   useEffect(() => {
     // Connect to the local backend server
-    const socket = io('http://localhost:3001');
+    const socket = io('http://localhost:3001', {
+      transports: ['websocket']
+    });
 
     socket.on('connect', () => {
       // Check if this is the first time the user has visited in this session

@@ -1,4 +1,5 @@
 import { Shield, ArrowRight, Server, Lock } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useDecryptText } from "../hooks/useDecryptText";
 
 export const GatewaySection = () => {
@@ -41,10 +42,10 @@ export const GatewaySection = () => {
               Complete portfolio encompassing VAPT testing, Red Teaming, source code review, GRC consulting, and system hardening, without the complexity of fragmented contracts.
             </p>
             
-            <button className="flex items-center justify-between w-full px-5 py-3 rounded-xl border border-black/10 dark:border-white/10 text-gray-900 dark:text-white font-medium text-sm hover:bg-black/5 dark:bg-white/5 transition-colors mt-auto group/btn">
+            <Link to="/services" className="flex items-center justify-between w-full px-5 py-3 rounded-xl border border-black/10 dark:border-white/10 text-gray-900 dark:text-white font-medium text-sm hover:bg-black/5 dark:bg-white/5 transition-colors mt-auto group/btn">
               <span>Explore Catalog</span>
               <ArrowRight className="h-4 w-4 text-gray-500 group-hover/btn:text-gray-900 dark:text-white transition-colors" />
-            </button>
+            </Link>
           </div>
 
           {/* Card 2 */}
@@ -60,10 +61,10 @@ export const GatewaySection = () => {
               Track live network death blocks, Tor requests, packet metrics, and review comparative operational delta radars in our simulation center.
             </p>
             
-            <button className="flex items-center justify-between w-full px-5 py-3 rounded-xl border border-black/10 dark:border-white/10 text-gray-900 dark:text-white font-medium text-sm hover:bg-black/5 dark:bg-white/5 transition-colors mt-auto group/btn">
+            <Link to="/soc-console" className="flex items-center justify-between w-full px-5 py-3 rounded-xl border border-black/10 dark:border-white/10 text-gray-900 dark:text-white font-medium text-sm hover:bg-black/5 dark:bg-white/5 transition-colors mt-auto group/btn">
               <span>SOC Console</span>
               <ArrowRight className="h-4 w-4 text-gray-500 group-hover/btn:text-gray-900 dark:text-white transition-colors" />
-            </button>
+            </Link>
           </div>
 
           {/* Card 3 */}
@@ -79,10 +80,10 @@ export const GatewaySection = () => {
               Audit PII classifiers across database columns, run automated Data Subject Rights (DSAR) sweeps, and sync ledger webhooks with Zero-Code integrations.
             </p>
             
-            <button className="flex items-center justify-between w-full px-5 py-3 rounded-xl border border-black/10 dark:border-white/10 text-gray-900 dark:text-white font-medium text-sm hover:bg-black/5 dark:bg-white/5 transition-colors mt-auto group/btn">
+            <Link to="/privacy-sandbox" className="flex items-center justify-between w-full px-5 py-3 rounded-xl border border-black/10 dark:border-white/10 text-gray-900 dark:text-white font-medium text-sm hover:bg-black/5 dark:bg-white/5 transition-colors mt-auto group/btn">
               <span>Privacy Sandbox</span>
               <ArrowRight className="h-4 w-4 text-gray-500 group-hover/btn:text-gray-900 dark:text-white transition-colors" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

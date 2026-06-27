@@ -461,21 +461,51 @@ app.post('/api/login', async (req, res) => {
   console.log(`[LOGIN ATTEMPT] Password received: "${password}"`);
   
   try {
+    // 1. Clean up old attempts
+    await db.query(`DELETE FROM login_attempts WHERE attempt_time < datetime('now', '-2 minutes')`);
+
+    // 2. Check for lockout
+    const lockoutCheck = await db.query(
+      `SELECT COUNT(*) as count, MAX(attempt_time) as last_failed_time 
+       FROM login_attempts 
+       WHERE email = $1 AND successful = 0 AND attempt_time > datetime('now', '-2 minutes')`,
+      [email]
+    );
+
+    if (lockoutCheck.rows && lockoutCheck.rows[0] && lockoutCheck.rows[0].count >= 5) {
+      const lastFailedTimeStr = lockoutCheck.rows[0].last_failed_time;
+      const lastFailed = new Date(lastFailedTimeStr + ' UTC');
+      const now = new Date();
+      const remainingSeconds = Math.ceil(((lastFailed.getTime() + 2 * 60 * 1000) - now.getTime()) / 1000);
+      
+      if (remainingSeconds > 0) {
+        console.log(`[LOGIN BLOCKED] Too many failed attempts for email: "${email}". Lockout remaining: ${remainingSeconds}s`);
+        return res.status(429).json({ 
+          error: `Too many failed attempts. Access blocked. Please try again in ${remainingSeconds} seconds.` 
+        });
+      }
+    }
+
     const result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
     const user = result.rows[0];
 
     if (!user) {
       console.log(`[LOGIN FAILED] No user found for email: "${email}"`);
+      await db.query('INSERT INTO login_attempts (email, successful) VALUES ($1, 0)', [email]);
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
     const match = await bcrypt.compare(password, user.password_hash);
     if (!match) {
       console.log(`[LOGIN FAILED] Password mismatch for email: "${email}"`);
+      await db.query('INSERT INTO login_attempts (email, successful) VALUES ($1, 0)', [email]);
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
     console.log(`[LOGIN SUCCESS] User authenticated: "${email}"`);
+    // Clear login attempts on success
+    await db.query('DELETE FROM login_attempts WHERE email = $1', [email]);
+
     const token = jwt.sign({ userId: user.id, email: user.email }, process.env.JWT_SECRET || 'secret', { expiresIn: '24h' });
     
     res.json({ success: true, token, user: { id: user.id, email: user.email } });
@@ -484,6 +514,7 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ error: 'Server error during login. Make sure PostgreSQL is running.' });
   }
 });
+
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {

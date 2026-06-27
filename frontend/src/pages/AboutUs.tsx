@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 
 import { ScrollReveal } from "../components/ScrollReveal";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 import DecryptedText from "../components/DecryptedText";
+import { CheckPoint } from '../components/CertificationBadges';
+import HistoricalTimeline from "../components/HistoricalTimeline";
 import { 
   MapPin, 
   Phone, 
@@ -31,17 +34,15 @@ import {
   Code,
   Plane,
   Calendar,
-  Rocket,
-  Building2,
-  Clock
+  Rocket
 } from 'lucide-react';
 
 /* ── Stagger variants for animations ── */
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
 };
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 14 },
   show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 260, damping: 22 } },
 };
@@ -294,7 +295,7 @@ export const AboutUs = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-24 relative overflow-hidden bg-gray-50 dark:bg-[#05080c] border-y border-gray-200 dark:border-white/10">
+      <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-[1440px] relative z-10">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -340,194 +341,10 @@ export const AboutUs = () => {
       </section>
 
       {/* Historical Timeline Section */}
-      <section className="py-24 relative overflow-hidden bg-[#05080c] border-b border-gray-200 dark:border-white/10 text-white">
-        {/* Ambient background grid & orbs */}
-        <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
-        
-        <div className="container mx-auto px-6 max-w-[1440px] relative z-10">
-          {/* Header */}
-          <ScrollReveal>
-            <div className="flex items-center gap-4 mb-16 justify-center">
-              <div className="h-14 w-14 rounded-full border border-cyan-400/45 bg-cyan-950/40 flex items-center justify-center text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
-                <Clock className="h-7 w-7" />
-              </div>
-              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-wider text-white text-center font-display">
-                Historical Timeline
-              </h2>
-            </div>
-          </ScrollReveal>
-
-          {/* Desktop Timeline: Diagonal snake-like path */}
-          <div className="relative w-full aspect-[1000/600] max-w-5xl mx-auto hidden md:block">
-            {/* SVG Path */}
-            <svg viewBox="0 0 1000 600" className="absolute inset-0 w-full h-full pointer-events-none" fill="none">
-              {/* Segment 1 */}
-              <motion.path
-                d="M 50,110 C 100,110 90,180 102,180"
-                stroke="#06b6d4"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="drop-shadow-[0_0_12px_rgba(6,182,212,0.85)]"
-              />
-              {/* Segment 2 */}
-              <motion.path
-                d="M 150,228 C 150,280 320,280 402,350"
-                stroke="#06b6d4"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: 0.6, duration: 0.6, ease: "easeInOut" }}
-                className="drop-shadow-[0_0_12px_rgba(6,182,212,0.85)]"
-              />
-              {/* Segment 3 */}
-              <motion.path
-                d="M 450,398 C 450,450 600,450 672,520"
-                stroke="#06b6d4"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: 1.2, duration: 0.6, ease: "easeInOut" }}
-                className="drop-shadow-[0_0_12px_rgba(6,182,212,0.85)]"
-              />
-              {/* Segment 4 */}
-              <motion.path
-                d="M 720,568 C 720,590 850,590 918,590"
-                stroke="#06b6d4"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: 1.8, duration: 0.6, ease: "easeInOut" }}
-                className="drop-shadow-[0_0_12px_rgba(6,182,212,0.85)]"
-              />
-              {/* Arrow tip */}
-              <motion.path
-                d="M 906,580 L 918,590 L 906,600"
-                stroke="#06b6d4"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 2.4, duration: 0.2 }}
-              />
-              {/* Glowing Inlet Connection Dots */}
-              <circle cx="102" cy="180" r="5" fill="#22d3ee" className="drop-shadow-[0_0_8px_rgba(34,211,238,0.9)]" />
-              <circle cx="402" cy="350" r="5" fill="#22d3ee" className="drop-shadow-[0_0_8px_rgba(34,211,238,0.9)]" />
-              <circle cx="672" cy="520" r="5" fill="#22d3ee" className="drop-shadow-[0_0_8px_rgba(34,211,238,0.9)]" />
-            </svg>
-
-            {/* Node 1: Circle center at (150, 180), text at (220, 110) */}
-            <div className="absolute left-[15%] top-[30%] flex items-center gap-6 -translate-x-12 -translate-y-12">
-              <div className="relative flex items-center justify-center shrink-0">
-                <div className="absolute w-28 h-28 rounded-full border border-cyan-500/20 animate-[ping_3.5s_infinite]" />
-                <div className="w-24 h-24 rounded-full border-2 border-cyan-400 bg-[#05080c] shadow-[0_0_25px_rgba(6,182,212,0.5)] flex items-center justify-center relative z-10 hover:scale-110 transition-transform duration-300">
-                  <Building2 className="h-10 w-10 text-cyan-400" />
-                </div>
-              </div>
-              <div className="border-l-2 border-cyan-500/70 pl-4 py-1 text-left max-w-[280px]">
-                <div className="w-6 h-1 bg-cyan-400 mb-2 rounded-full" />
-                <h3 className="text-lg font-black uppercase tracking-wider text-white mb-1">Company Founded</h3>
-                <p className="text-gray-400 text-xs leading-relaxed font-semibold">
-                  Incorporated in Pilibhit, Uttar Pradesh, specializing in operational management and agile consulting.
-                </p>
-              </div>
-            </div>
-
-            {/* Node 2: Circle center at (450, 350), text at (520, 280) */}
-            <div className="absolute left-[45%] top-[58.3%] flex items-center gap-6 -translate-x-12 -translate-y-12">
-              <div className="relative flex items-center justify-center shrink-0">
-                <div className="absolute w-28 h-28 rounded-full border border-cyan-500/20 animate-[ping_3.5s_infinite]" />
-                <div className="w-24 h-24 rounded-full border-2 border-cyan-400 bg-[#05080c] shadow-[0_0_25px_rgba(6,182,212,0.5)] flex items-center justify-center relative z-10 hover:scale-110 transition-transform duration-300">
-                  <Users className="h-10 w-10 text-cyan-400" />
-                </div>
-              </div>
-              <div className="border-l-2 border-cyan-500/70 pl-4 py-1 text-left max-w-[280px]">
-                <div className="w-6 h-1 bg-cyan-400 mb-2 rounded-full" />
-                <h3 className="text-lg font-black uppercase tracking-wider text-white mb-1">Service Expansion</h3>
-                <p className="text-gray-400 text-xs leading-relaxed font-semibold">
-                  Deploying strategic operations across key states and expanding to comprehensive business consulting models.
-                </p>
-              </div>
-            </div>
-
-            {/* Node 3: Circle center at (720, 520), text at (790, 450) */}
-            <div className="absolute left-[72%] top-[86.7%] flex items-center gap-6 -translate-x-12 -translate-y-12">
-              <div className="relative flex items-center justify-center shrink-0">
-                <div className="absolute w-28 h-28 rounded-full border border-cyan-500/20 animate-[ping_3.5s_infinite]" />
-                <div className="w-24 h-24 rounded-full border-2 border-cyan-400 bg-[#05080c] shadow-[0_0_25px_rgba(6,182,212,0.5)] flex items-center justify-center relative z-10 hover:scale-110 transition-transform duration-300">
-                  <Rocket className="h-10 w-10 text-cyan-400" />
-                </div>
-              </div>
-              <div className="border-l-2 border-cyan-500/70 pl-4 py-1 text-left max-w-[280px]">
-                <div className="w-6 h-1 bg-cyan-400 mb-2 rounded-full" />
-                <h3 className="text-lg font-black uppercase tracking-wider text-white mb-1">Digital Transformation</h3>
-                <p className="text-gray-400 text-xs leading-relaxed font-semibold">
-                  Scaling cloud system architectures and integrating emerging Artificial Intelligence services.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Timeline: Vertical list */}
-          <div className="relative pl-8 border-l-2 border-cyan-500/30 space-y-12 md:hidden text-left max-w-lg mx-auto">
-            {[
-              {
-                year: '2025',
-                title: 'Company Founded',
-                icon: Building2,
-                desc: 'Incorporated in Pilibhit, Uttar Pradesh, specializing in operational management and agile consulting.',
-              },
-              {
-                year: '2025',
-                title: 'Service Expansion',
-                icon: Users,
-                desc: 'Deploying strategic operations across key states and expanding to comprehensive business consulting models.',
-              },
-              {
-                year: '2025+',
-                title: 'Digital Transformation Vision',
-                icon: Rocket,
-                desc: 'Scaling cloud system architectures and integrating emerging Artificial Intelligence services.',
-              },
-            ].map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div key={idx} className="relative group">
-                  {/* Glowing timeline node */}
-                  <div className="absolute -left-[45px] top-1 h-8 w-8 rounded-full border border-cyan-400 bg-[#05080c] flex items-center justify-center shadow-[0_0_10px_rgba(6,182,212,0.4)]">
-                    <Icon className="h-4 w-4 text-cyan-400" />
-                  </div>
-
-                  <div className="font-mono text-xs font-bold text-cyan-400 uppercase tracking-widest mb-1">
-                    {item.year}
-                  </div>
-                  <h4 className="text-lg font-extrabold uppercase text-white tracking-wide mb-2">
-                    {item.title}
-                  </h4>
-                  <p className="text-sm text-gray-400 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <HistoricalTimeline />
 
       {/* Service Offerings */}
-      <section className="py-24 relative overflow-hidden bg-gray-50 dark:bg-[#05080c] border-y border-gray-200 dark:border-white/10">
+      <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-[1440px] relative z-10">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -657,7 +474,7 @@ export const AboutUs = () => {
       </section>
 
       {/* Industry Focus */}
-      <section className="py-24 relative overflow-hidden bg-gray-50 dark:bg-[#05080c] border-y border-gray-200 dark:border-white/10">
+      <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 z-[0] cyber-grid opacity-10 dark:opacity-5 pointer-events-none" />
         
         <div className="container mx-auto px-6 max-w-[1440px] relative z-10 text-center mb-16">
@@ -745,6 +562,31 @@ export const AboutUs = () => {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Strategic Partners / Alliances */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container mx-auto px-6 max-w-[1440px] relative z-10 text-center">
+          <ScrollReveal>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white uppercase tracking-tight font-display mb-6">
+              Collaborations & Alliances
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-16">
+              We collaborate with global technology leaders to deliver state-of-the-art cybersecurity protection and cloud integration.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <div className="flex flex-wrap justify-center items-center gap-12">
+              <div className="flex flex-col items-center justify-center p-6 bg-white dark:bg-[#0a0e14] border border-gray-200 dark:border-white/5 rounded-3xl w-[260px] h-[180px] shadow-sm hover:shadow-md hover:border-cyan-500/30 dark:hover:border-cyan-500/20 transition-all duration-300">
+                <CheckPoint size={90} className="text-gray-950 dark:text-white" />
+                <span className="text-xs font-bold text-gray-400 dark:text-gray-500 mt-4 uppercase tracking-widest">
+                  Check Point Secured Partner
+                </span>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -89,3 +89,11 @@ CREATE INDEX IF NOT EXISTS idx_team_members_id ON team_members(id ASC);
 CREATE INDEX IF NOT EXISTS idx_sector_services_sector_id ON sector_services(sector_id);
 CREATE INDEX IF NOT EXISTS idx_services_category_id ON services(category_id);
 
+CREATE TABLE IF NOT EXISTS login_attempts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email VARCHAR(255) NOT NULL,
+    attempt_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    successful INTEGER DEFAULT 0
+);
+
+CREATE INDEX IF NOT EXISTS idx_login_attempts_email_time ON login_attempts(email, attempt_time DESC);

@@ -15,6 +15,8 @@ import { AdminDashboard } from "./pages/AdminDashboard";
 import { Login } from "./pages/Login";
 import { AboutUs } from "./pages/AboutUs";
 import { LegalPolicy } from "./pages/LegalPolicy";
+import { SocConsole } from "./pages/SocConsole";
+import { PrivacySandbox } from "./pages/PrivacySandbox";
 import { Helmet } from 'react-helmet-async';
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LocationProvider } from "./contexts/LocationContext";
@@ -54,6 +56,8 @@ function App() {
                   <Route path="/sectors/:sectorId/:serviceId" element={<SectorServiceDetail />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/admin" element={<AdminDashboard />} />
+                  <Route path="/soc-console" element={<SocConsole />} />
+                  <Route path="/privacy-sandbox" element={<PrivacySandbox />} />
                   <Route path="/privacy-policy" element={<LegalPolicy />} />
                   <Route path="/terms-of-service" element={<LegalPolicy />} />
                   <Route path="/cookie-policy" element={<LegalPolicy />} />

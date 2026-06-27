@@ -127,10 +127,10 @@ const sectorsData = [
 async function seed() {
   try {
     console.log('Clearing old data...');
-    await db.query('TRUNCATE TABLE services CASCADE');
-    await db.query('TRUNCATE TABLE service_categories CASCADE');
-    await db.query('TRUNCATE TABLE sector_services CASCADE');
-    await db.query('TRUNCATE TABLE sectors CASCADE');
+    await db.query('DELETE FROM services');
+    await db.query('DELETE FROM service_categories');
+    await db.query('DELETE FROM sector_services');
+    await db.query('DELETE FROM sectors');
 
     console.log('Seeding Service Categories...');
     for (const cat of serviceCategoriesData) {

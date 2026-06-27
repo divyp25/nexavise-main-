@@ -33,6 +33,7 @@ export const AdminDashboard = () => {
   const [reviewFilterStar, setReviewFilterStar] = useState<number | ''>('');
   const [reviewFilterStatus, setReviewFilterStatus] = useState('all');
   const [reviewPage, setReviewPage] = useState(1);
+  const [isRefreshingReviews, setIsRefreshingReviews] = useState(false);
   
   // Data for Content Management
   const [sectors, setSectors] = useState<any[]>([]);
@@ -159,6 +160,7 @@ export const AdminDashboard = () => {
 
   // Reviews Handlers
   const fetchReviews = async () => {
+    setIsRefreshingReviews(true);
     try {
       const res = await fetch('http://localhost:3001/api/reviews/admin', {
         headers: { 'Authorization': `Bearer ${token}` }
@@ -170,8 +172,14 @@ export const AdminDashboard = () => {
       }
       const data = await res.json();
       if (Array.isArray(data)) setReviews(data);
-    } catch (e) {}
+    } catch (e) {
+    } finally {
+      setTimeout(() => {
+        setIsRefreshingReviews(false);
+      }, 500);
+    }
   };
+
 
   const handleAddReview = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -831,8 +839,12 @@ export const AdminDashboard = () => {
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                     <Star className="w-5 h-5 text-cyan-500" /> Review Management ({filteredReviews.length})
                   </h3>
-                  <button onClick={fetchReviews} className="p-2 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
-                    <RefreshCw className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                  <button 
+                    onClick={fetchReviews} 
+                    disabled={isRefreshingReviews} 
+                    className="p-2 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors disabled:opacity-50"
+                  >
+                    <RefreshCw className={`w-4 h-4 text-gray-600 dark:text-gray-400 ${isRefreshingReviews ? 'animate-spin' : ''}`} />
                   </button>
                 </div>
                 <div className="flex flex-col md:flex-row gap-4">
