@@ -165,7 +165,7 @@ export const CtaSection = () => {
             Submit your system architecture size, regulatory requirements, or penetration testing scope target, and receive a proposal within 4 hours.
           </p>
           <a 
-            href="mailto:nexaviseconsulting@gmail.com"
+            href="mailto:nexaviseconsulting@gmail.com?subject=Talk%20to%20an%20Expert"
             className="inline-block text-center w-full sm:w-auto px-8 py-4 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold text-base sm:text-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm dark:shadow-md"
           >
             Talk to an Expert
